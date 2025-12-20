@@ -1,2 +1,2 @@
-# Detecci-n-de-Intrusiones-y-An-lisis-de-Anomal-as-en-Tr-fico-de-Red-mediante-T-cnicas-Estad-sticas
+# Detección-de-Intrusiones-y-Análisis-de-Anomalías-en-Tráfico-de-Red-mediante-Técnicas-Estadísticas
 La seguridad informática enfrenta grandes retos hoy. Los IDS basados en firmas fallan ante ataques nuevos o zero-day. Este enfoque estadístico analiza el comportamiento del tráfico para detectar anomalías sin depender de firmas conocidas, mejorando la identificación de amenazas en entornos cambiantes y reforzando la protección de la infraestructura
