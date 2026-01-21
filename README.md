@@ -102,60 +102,60 @@ SECCIÓN 2: ANÁLISIS EXPLORATORIO DE DATOS (EDA)
 
 
 SECCIÓN 3: PREPARACIÓN DE DATOS
-3.1 Manejo de Valores Faltantes 🔲 PENDIENTE
+3.1 Manejo de Valores Faltantes ✅  PENDIENTE
 
-🔲 Verificación (ya sabemos que no hay)
-🔲 Tratamiento de attack_category faltante en test
+✅  Verificación (ya sabemos que no hay)
+✅  Tratamiento de attack_category faltante en test
 
-3.2 Codificación de Variables Categóricas 🔲 PENDIENTE
+3.2 Codificación de Variables Categóricas ✅  PENDIENTE
 
-🔲 One-Hot Encoding para protocol_type y flag
-🔲 Estrategia para service (66 categorías): Target Encoding o agrupación
-🔲 Label Encoding para attack_category
+✅  One-Hot Encoding para protocol_type y flag
+✅  Estrategia para service (66 categorías): Target Encoding o agrupación
+✅  Label Encoding para attack_category
 
-3.3 Transformación de Variables Numéricas 🔲 PENDIENTE
+3.3 Transformación de Variables Numéricas ✅  PENDIENTE
 
-🔲 Transformación logarítmica (log1p) para variables asimétricas
-🔲 Estandarización (StandardScaler) para PCA y K-NN
-🔲 Justificación de cada transformación
+✅  Transformación logarítmica (log1p) para variables asimétricas
+✅  Estandarización (StandardScaler) para PCA y K-NN
+✅  Justificación de cada transformación
 
-3.4 División y Estratificación 🔲 PENDIENTE
+3.4 División y Estratificación ✅  PENDIENTE
 
-🔲 Uso de train/test proporcionados (ya separados)
-🔲 Creación de validation set si es necesario
-🔲 Estratificación por categoría
+✅  Uso de train/test proporcionados (ya separados)
+✅  Creación de validation set si es necesario
+✅  Estratificación por categoría
 
-3.5 Resumen de Preparación 🔲 PENDIENTE
+3.5 Resumen de Preparación ✅  PENDIENTE
 
-🔲 Pipeline de transformaciones aplicadas
-🔲 Dimensiones finales de datasets
-🔲 Variables listas para modelado
+✅  Pipeline de transformaciones aplicadas
+✅  Dimensiones finales de datasets
+✅  Variables listas para modelado
 
 
 SECCIÓN 4: APLICACIÓN DE TÉCNICAS ESTADÍSTICAS
-4.1 Pruebas de Hipótesis (Pregunta 1) 🔲 PENDIENTE
+4.1 Pruebas de Hipótesis (Pregunta 1) ✅  PENDIENTE
 4.1.1 Formulación de Hipótesis
 
-🔲 H₀: No hay diferencias en src_bytes entre Normal y ataques
-🔲 H₁: Sí hay diferencias significativas
-🔲 (Repetir para dst_bytes y duration)
+✅  H₀: No hay diferencias en src_bytes entre Normal y ataques
+✅  H₁: Sí hay diferencias significativas
+✅  (Repetir para dst_bytes y duration)
 
 4.1.2 Verificación de Supuestos
 
-🔲 Prueba de normalidad (Shapiro-Wilk o Kolmogorov-Smirnov)
-🔲 Decisión: ANOVA vs. Kruskal-Wallis
+✅  Prueba de normalidad (Shapiro-Wilk o Kolmogorov-Smirnov)
+✅  Decisión: ANOVA vs. Kruskal-Wallis
 
 4.1.3 Ejecución de Pruebas
 
-🔲 Kruskal-Wallis para cada variable (src_bytes, dst_bytes, duration)
-🔲 Comparaciones post-hoc (Dunn test) entre pares de categorías
-🔲 Cálculo de p-values y tamaño de efecto
+✅  Kruskal-Wallis para cada variable (src_bytes, dst_bytes, duration)
+✅  Comparaciones post-hoc (Dunn test) entre pares de categorías
+✅  Cálculo de p-values y tamaño de efecto
 
 4.1.4 Interpretación de Resultados
 
-🔲 Respuesta a Pregunta 1: ¿Hay diferencias significativas?
-🔲 Qué variables diferencian más entre categorías
-🔲 Significancia estadística vs. práctica
+✅  Respuesta a Pregunta 1: ¿Hay diferencias significativas?
+✅  Qué variables diferencian más entre categorías
+✅  Significancia estadística vs. práctica
 
 
 4.2 Análisis de Componentes Principales - PCA (Pregunta 2) 🔲 PENDIENTE
@@ -232,14 +232,6 @@ SECCIÓN 4: APLICACIÓN DE TÉCNICAS ESTADÍSTICAS
 🔲 Recomendación justificada
 
 
-4.4 Técnica Adicional (Opcional): Clustering K-Means 🔲 OPCIONAL
-
-🔲 Aplicación de K-Means (k=5)
-🔲 ¿Los clusters coinciden con categorías reales?
-🔲 Índice de Silhouette
-🔲 Visualización de clusters vs. categorías reales
-
-
 SECCIÓN 5: RESULTADOS Y CONCLUSIONES
 5.1 Resumen de Hallazgos Principales 🔲 PENDIENTE
 
@@ -306,3 +298,170 @@ Exposición Oral (10-12 minutos) 🔲 PENDIENTE
 🔲 Script de presentación
 🔲 Ensayo y timing
 🔲 Preparación para preguntas
+
+
+4.2 ANÁLISIS DE COMPONENTES PRINCIPALES (PCA)
+
+PREGUNTA DE INVESTIGACIÓN 2:
+
+¿Es posible reducir la dimensionalidad de las características mediante PCA
+
+conservando ≥95% de varianza explicada, y cómo impacta en la visualización
+
+y separación de ataques?
+
+4.2.1 VERIFICACIÓN DE REQUISITOS PARA PCA
+
+REQUISITOS DE PCA:
+
+1. ✅ Variables estandarizadas (media=0, std=1)
+
+2. ✅ Variables numéricas
+
+3. ✅ Multicolinealidad presente (justifica reducción dimensional)
+
+4. ✅ Tamaño de muestra adecuado (n >> p)
+
+JUSTIFICACIÓN (basada en Sección 3):
+
+- Estandarización aplicada en preparación de datos
+
+- Multicolinealidad documentada en EDA (>30 pares r>0.7)
+
+- n=25,192 >> p=~60 (ratio 420:1)
+
+📊 Verificación de estandarización:
+
+   • Media de features: 0.045455 (esperado ≈ 0)
+
+   • Desviación estándar promedio: 0.701792 (esperado ≈ 1)
+
+   • Variables con media≈0 (|μ|<0.1): 59/66 (89.4%)
+
+   • Variables con std≈1 (|σ-1|<0.1): 41/66 (62.1%)
+
+   ⚠️ Algunas variables no están correctamente estandarizadas
+
+      Revisar proceso de preparación de datos
+
+📊 Dimensiones del dataset:
+
+   • Observaciones (n): 25,192
+
+   • Features originales (p): 66
+
+   • Ratio n/p: 381.7:1
+
+   ✅ Ratio n/p > 5 (mínimo recomendado) - Muestra adecuada para PCA
+
+
+
+QEU pasa aqui, y como afecta. Te recuerdo la estandarizacion hecha:
+
+# Estandarización de variables numéricas
+
+print("ESTANDARIZACIÓN DE VARIABLES NUMÉRICAS")
+
+
+
+# Identificar todas las variables numéricas (excluyendo variables objetivo)
+
+exclude_from_scaling = ['is_attack', 'difficulty_level', 'attack_type', 'attack_category']
+
+
+
+# Añadir attack_category_encoded si ya existe
+
+if 'attack_category_encoded' in train_df.columns:
+
+    exclude_from_scaling.append('attack_category_encoded')
+
+
+
+# Variables numéricas a estandarizar
+
+numeric_cols_to_scale = [col for col in train_df.select_dtypes(include=[np.number]).columns 
+
+                         if col not in exclude_from_scaling]
+
+
+
+print(f"\n📊 Variables numéricas a estandarizar: {len(numeric_cols_to_scale)}")
+
+print(f"   Primeras 10: {numeric_cols_to_scale[:10]}")
+
+if len(numeric_cols_to_scale) > 10:
+
+    print(f"   ... (+{len(numeric_cols_to_scale)-10} más)")
+
+
+
+# Estadísticos PRE-estandarización (muestra)
+
+print(f"\n📈 Estadísticos PRE-estandarización (primeras 3 variables):")
+
+for col in numeric_cols_to_scale[:3]:
+
+    print(f"\n{col}:")
+
+    print(f"  Media: {train_df[col].mean():.4f}")
+
+    print(f"  Std: {train_df[col].std():.4f}")
+
+    print(f"  Min: {train_df[col].min():.4f}")
+
+    print(f"  Max: {train_df[col].max():.4f}")
+
+
+
+# Inicializar StandardScaler
+
+scaler = sk.preprocessing.StandardScaler()
+
+
+
+# Fit SOLO en train (aprender media y std de train)
+
+scaler.fit(train_df[numeric_cols_to_scale])
+
+
+
+# Transform en train y test
+
+train_df[numeric_cols_to_scale] = scaler.transform(train_df[numeric_cols_to_scale])
+
+test_df[numeric_cols_to_scale] = scaler.transform(test_df[numeric_cols_to_scale])
+
+
+
+print(f"\n✅ Estandarización aplicada con StandardScaler")
+
+
+
+# Estadísticos POST-estandarización (verificación)
+
+print(f"\n📈 Estadísticos POST-estandarización (primeras 3 variables):")
+
+for col in numeric_cols_to_scale[:3]:
+
+    print(f"\n{col}:")
+
+    print(f"  Media: {train_df[col].mean():.6f}")  # Debe ser ~0
+
+    print(f"  Std: {train_df[col].std():.6f}")  # Debe ser ~1
+
+    print(f"  Min: {train_df[col].min():.4f}")
+
+    print(f"  Max: {train_df[col].max():.4f}")
+
+
+
+print("\n⚠️ VERIFICACIÓN CRÍTICA:")
+
+print("Media debe estar cerca de 0, Std cerca de 1 en train")
+
+print("Test puede tener valores ligeramente diferentes (usa estadísticos de train)")
+
+
+
+ 
